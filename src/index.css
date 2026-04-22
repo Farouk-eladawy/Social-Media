@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Cairo', sans-serif;
+  --font-serif: 'Amiri', serif;
+}
+
+@layer base {
+  body {
+    background-color: #f3f4f6;
+    font-family: 'Cairo', sans-serif;
+    color: #1f2937;
+  }
+}
+
+@media print {
+  body {
+    background-color: white !important;
+    font-size: 14pt;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 2cm !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    border: none !important;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+  
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  p {
+    line-height: 1.8;
+  }
+}
