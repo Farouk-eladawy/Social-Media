@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Printer, BookOpen, ChevronRight, FileText } from 'lucide-react';
+import { Printer, BookOpen, ChevronRight } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('cover');
@@ -28,7 +28,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row rtl:space-x-reverse font-sans bg-slate-50 text-slate-900">
+    <div className="min-h-screen flex flex-col md:flex-row rtl:space-x-reverse font-sans bg-gray-200 text-slate-900 print-layout-reset">
       
       {/* Sidebar Navigation */}
       <aside className="no-print w-full md:w-64 bg-white shadow-sm border-l border-slate-200 fixed md:h-screen z-10 hidden md:flex flex-col">
@@ -42,7 +42,7 @@ export default function App() {
             className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-lg transition-colors shadow-sm font-semibold text-sm"
           >
             <Printer className="w-4 h-4" />
-            طباعة أو حفظ PDF
+            تحويل إلى PDF
           </button>
         </div>
         
@@ -65,119 +65,104 @@ export default function App() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 md:mr-64 p-4 md:p-8 overflow-y-auto h-screen scroll-smooth">
+      <main className="flex-1 md:mr-64 py-8 overflow-y-auto h-screen scroll-smooth print-layout-reset px-4">
         
-        <div className="max-w-4xl mx-auto print-page shadow-sm border border-slate-200 overflow-hidden rounded-xl bg-slate-50">
-          <div className="p-8 md:p-12 space-y-16">
+        {/* Document Visual Container (A4 Width Simulation for Readability on Screen) */}
+        <div className="max-w-[21cm] mx-auto bg-white shadow-2xl print-layout-reset text-black font-serif print:shadow-none min-h-[29.7cm]">
+          
+          <div className="px-10 py-16 sm:px-14 sm:py-20 print:p-0">
             
             {/* Cover Page */}
-            <section id="cover" className="min-h-[80vh] flex flex-col justify-center items-center text-center space-y-12 page-break">
-              <div className="w-full border-b-4 border-emerald-600 shadow-sm p-8 md:p-12 rounded-xl bg-white relative">
-                
-                <h1 className="text-3xl md:text-5xl font-extrabold text-slate-800 leading-tight mt-12 mb-8">
+            <section id="cover" className="min-h-[75vh] print:min-h-0 print:h-auto flex flex-col items-center justify-center text-center">
+              
+              <div className="w-full max-w-lg mx-auto">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-relaxed mb-4">
                   تأثير مواقع التواصل الاجتماعي <br/> على العلاقات الأسرية
-                  <span className="block text-xl md:text-2xl text-emerald-700 mt-6 font-sans">
-                    ودور الأخصائي الاجتماعي في الحد منها
-                  </span>
                 </h1>
+                <h2 className="text-xl sm:text-2xl font-semibold mt-4 text-emerald-900 print:text-black">
+                  ودور الأخصائي الاجتماعي في الحد منها
+                </h2>
                 
-                <p className="text-slate-500 font-bold mb-16">بحث جامعي شامل (مرحلة البكالوريوس)</p>
+                <p className="font-bold text-lg mt-12 mb-16 text-slate-800 print:text-black">بحث جامعي شامل (مرحلة البكالوريوس)</p>
 
-                <div className="mt-20 space-y-4 text-right w-full sm:w-3/4 mx-auto bg-slate-50 p-8 rounded-xl border border-slate-200 shadow-sm">
-                  <h3 className="font-bold text-xl text-slate-700 border-b border-slate-200 pb-3 mb-6">إعداد الطالبة:</h3>
-                  <div className="text-2xl font-bold text-emerald-800 mb-6">إيمان زين العابدين عبدالفتاح أحمد</div>
+                <div className="mt-16 text-right w-full sm:w-4/5 mx-auto p-8 rounded border-2 border-slate-800 print:border-black">
+                  <h3 className="font-bold text-xl text-slate-900 border-b-2 border-slate-800 pb-2 mb-6 text-center print:border-black print:text-black">إعداد الطالبة</h3>
+                  <div className="text-2xl font-bold text-center text-black mb-8">إيمان زين العابدين عبدالفتاح أحمد</div>
                   
-                  <div className="grid grid-cols-2 gap-y-6 gap-x-4 mt-6 text-base text-slate-600">
-                    <div>
-                      <span className="font-bold text-slate-800">الفرقة:</span> الرابعة
+                  <div className="flex flex-col gap-4 mt-6 text-[18px] text-black font-bold">
+                    <div className="flex justify-between">
+                      <span>الفرقة:</span> 
+                      <span>الرابعة</span>
                     </div>
-                    <div>
-                      <span className="font-bold text-slate-800">اللائحة:</span> لائحة قديمة
+                    <div className="flex justify-between">
+                      <span>اللائحة:</span> 
+                      <span>لائحة قديمة</span>
                     </div>
-                    <div className="col-span-2 bg-white p-3 rounded-md border border-slate-100 flex items-center justify-between">
-                      <span className="font-bold text-slate-800">رقم الجلوس:</span> 
-                      <span className="font-black text-emerald-700 text-lg">201830658</span>
+                    <div className="flex justify-between mt-2 pt-2 border-t border-slate-400 print:border-black">
+                      <span>رقم الجلوس:</span> 
+                      <span className="text-xl font-normal">201830658</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-24 pt-8 text-slate-400 font-mono text-sm border-t border-slate-100">
+                <div className="mt-20 font-bold text-lg text-black">
                    العام الجامعي 2026/2027
                 </div>
               </div>
             </section>
 
             {/* Chapter 1: Introduction and Problem */}
-            <section id="intro" className="page-break space-y-6 bg-white p-8 rounded-xl shadow-sm border border-slate-200">
-              <h2 className="text-2xl font-extrabold text-slate-800 border-r-4 border-emerald-500 pr-3 pb-1 flex items-center justify-between">
-                <span>الفصل الأول: المقدمة ومشكلة البحث</span>
-                <FileText className="w-6 h-6 text-emerald-500" />
-              </h2>
+            <section id="intro" className="page-break pt-12 print:pt-0">
+              <h2 className="text-3xl font-bold text-center mb-8">الفصل الأول<br/><span className="text-2xl font-semibold mt-2 block">المقدمة ومشكلة البحث</span></h2>
               
-              <div className="space-y-6">
-                <h3 className="text-xl font-bold text-emerald-900 border-b border-slate-100 pb-2">أولاً: مقدمة البحث</h3>
-                <div className="text-[16px] text-slate-600 leading-relaxed space-y-4 text-justify">
-                  <p>
-                    يشهد العصر الحالي ثورة تكنولوجية هائلة في مجال الاتصالات والمعلومات، وكان من أبرز إفرازات هذه الثورة وأشدها تأثيراً في النسيج المجتمعي ظهور شبكات التواصل الاجتماعي (Social Media Networks) التي اخترقت كافة الحواجز الزمانية والمكانية لتصبح جزءاً لا يتجزأ من الحياة اليومية للأفراد والمجتمعات. ورغم ما حققته هذه المواقع من تسهيلات تدعم الانفتاح المتبادل وتمكن الأفراد من تبادل المعارف ونقل الثقافات، إلا أنها حملت في طياتها تحديات جسيمة ألقت بظلالها على البناء الأسري، الذي يُعد النواة الأولى والركيزة الأساسية للمجتمع.
-                  </p>
-                  <p>
-                    لقد أحدث الاستخدام المفرط وغير الواعي لمنصات التواصل الاجتماعي تحولاً جذرياً في نمط التفاعل داخل النسق الأسري؛ حيث أسهمت هذه المنصات في تعزيز ظاهرة "الحضور الجسدي والغياب الذهني". فقد حلت الشاشات المتوهجة محل الوجوه، وتحولت الحوارات الأسرية الدافئة إلى رسائل نصية جافة وإيموجيات صامتة. وبرزت على السطح ظواهر اجتماعية خطيرة لم تكن مألوفة سابقاً كظاهرة "الخرس الزوجي"، و"العزلة الافتراضية"، و"التفكك الأسري التقني"، وتراجع سلطة الضبط الاجتماعي المتمثلة في الرقابة الوالدية.
-                  </p>
-                  <p>
-                    وفي خضم هذه التغيرات المتسارعة التي تهدد استقرار مؤسسة الأسرة، تبرز الحاجة الماسة لتدخل الخدمة الاجتماعية كمهنة علمية وإنسانية تسعى لإحداث التغيير المخطط. ويهدف هذا التغيير إلى مساعدة الأفراد والأسر والمجتمعات على استعادة توازنها المعنوي والاجتماعي. ويعد التدخل المهني للأخصائي الاجتماعي، بأساليبه العلمية وأدواره الوقائية والعلاجية والتنموية، خط الدفاع الأهم لحماية الأسرة من التصدع وتمكينها من الاستفادة من الثورة الرقمية دون التخلي عن مقومات ترابطها.
-                  </p>
-                </div>
+              <div className="space-y-6 text-lg leading-loose text-justify">
+                <h3 className="text-2xl font-bold mt-8 mb-4">أولاً: مقدمة البحث</h3>
+                <p>
+                  يشهد العصر الحالي ثورة تكنولوجية هائلة في مجال الاتصالات والمعلومات، وكان من أبرز إفرازات هذه الثورة وأشدها تأثيراً في النسيج المجتمعي ظهور شبكات التواصل الاجتماعي التي اخترقت كافة الحواجز الزمانية والمكانية لتصبح جزءاً لا يتجزأ من الحياة اليومية للأفراد والمجتمعات. ورغم ما حققته هذه المواقع من تسهيلات تدعم الانفتاح المتبادل وتمكن الأفراد من تبادل المعارف ونقل الثقافات، إلا أنها حملت في طياتها تحديات جسيمة ألقت بظلالها على البناء الأسري، الذي يُعد النواة الأولى والركيزة الأساسية للمجتمع.
+                </p>
+                <p>
+                  لقد أحدث الاستخدام المفرط وغير الواعي لمنصات التواصل الاجتماعي تحولاً جذرياً في نمط التفاعل داخل النسق الأسري؛ حيث أسهمت هذه المنصات في تعزيز ظاهرة "الحضور الجسدي والغياب الذهني". فقد حلت الشاشات المتوهجة محل الوجوه، وتحولت الحوارات الأسرية الدافئة إلى رسائل نصية جافة وإيموجيات صامتة. وبرزت على السطح ظواهر اجتماعية خطيرة لم تكن مألوفة سابقاً كظاهرة "الخرس الزوجي"، و"العزلة الافتراضية"، و"التفكك الأسري التقني"، وتراجع سلطة الضبط الاجتماعي المتمثلة في الرقابة الوالدية.
+                </p>
+                <p>
+                  وفي خضم هذه التغيرات المتسارعة التي تهدد استقرار مؤسسة الأسرة، تبرز الحاجة الماسة لتدخل الخدمة الاجتماعية كمهنة علمية وإنسانية تسعى لإحداث التغيير المخطط. ويهدف هذا التغيير إلى مساعدة الأفراد والأسر والمجتمعات على استعادة توازنها المعنوي والاجتماعي. ويعد التدخل المهني للأخصائي الاجتماعي، بأساليبه العلمية وأدواره الوقائية والعلاجية والتنموية، خط الدفاع الأهم لحماية الأسرة من التصدع وتمكينها من الاستفادة من الثورة الرقمية دون التخلي عن مقومات ترابطها.
+                </p>
 
-                <h3 className="text-xl font-bold text-emerald-900 border-b border-slate-100 pb-2 pt-4">ثانياً: بلورة مشكلة البحث</h3>
-                <div className="text-[16px] text-slate-600 leading-relaxed text-justify">
-                  <p>
-                    يمكن تحديد مشكلة البحث في التساؤل الرئيسي الآتي: <strong>"ما هي طبيعة التأثيرات التي تفرضها مواقع التواصل الاجتماعي على منظومة العلاقات الأسرية، وما هو الدور المهني المأمول للأخصائي الاجتماعي في الحد من آثارها السلبية؟"</strong>
-                  </p>
-                  <p className="mt-4 font-bold text-slate-700">ويتفرع من هذا التساؤل الرئيسي التساؤلات الفرعية التالية:</p>
-                  <ul className="list-disc list-inside mt-3 space-y-2 text-slate-600">
-                    <li>ما الأسباب والدوافع التي تدفع أفراد الأسرة إلى الإفراط في استخدام شبكات التواصل الاجتماعي؟</li>
-                    <li>ما طبيعة التأثيرات الإيجابية والسلبية للمنصات الرقمية على العلاقات بين الزوجين؟</li>
-                    <li>كيف تؤثر مواقع التواصل الاجتماعي على مستوى التقارب والتفاهم بين الآباء والأبناء؟</li>
-                    <li>ما هي المعوقات التي تواجه الأسرة في تحقيق الانضباط التقني داخل المنزل؟</li>
-                    <li>ما هي آليات التدخل المهني (وقائياً، وعلاجياً، وتنموياً) للأخصائي الاجتماعي لمواجهة ظاهرة التفكك الأسري الافتراضي؟</li>
-                  </ul>
-                </div>
+                <h3 className="text-2xl font-bold mt-10 mb-4">ثانياً: بلورة مشكلة البحث</h3>
+                <p>
+                  يمكن تحديد مشكلة البحث في التساؤل الرئيسي الآتي: <strong>"ما هي طبيعة التأثيرات التي تفرضها مواقع التواصل الاجتماعي على منظومة العلاقات الأسرية، وما هو الدور المهني المأمول للأخصائي الاجتماعي في الحد من آثارها السلبية؟"</strong>
+                </p>
+                <p className="mt-4 font-bold">ويتفرع من هذا التساؤل الرئيسي التساؤلات الفرعية التالية:</p>
+                <ul className="list-decimal list-outside mr-8 mt-3 space-y-2">
+                  <li>ما الأسباب والدوافع التي تدفع أفراد الأسرة إلى الإفراط في استخدام شبكات التواصل الاجتماعي؟</li>
+                  <li>ما طبيعة التأثيرات الإيجابية والسلبية للمنصات الرقمية على العلاقات بين الزوجين؟</li>
+                  <li>كيف تؤثر مواقع التواصل الاجتماعي على مستوى التقارب والتفاهم بين الآباء والأبناء؟</li>
+                  <li>ما هي المعوقات التي تواجه الأسرة في تحقيق الانضباط التقني داخل المنزل؟</li>
+                  <li>ما هي آليات التدخل المهني (وقائياً، وعلاجياً، وتنموياً) للأخصائي الاجتماعي لمواجهة ظاهرة التفكك الأسري الافتراضي؟</li>
+                </ul>
               </div>
             </section>
 
             {/* Chapter 2: Importance and Objectives */}
-            <section id="importance" className="page-break space-y-8 bg-white p-8 rounded-xl shadow-sm border border-slate-200">
-              <h2 className="text-2xl font-extrabold text-slate-800 border-r-4 border-emerald-500 pr-3 pb-1">
-                الفصل الثاني: أهمية البحث وأهدافه
-              </h2>
+            <section id="importance" className="page-break pt-12 print:pt-0">
+              <h2 className="text-3xl font-bold text-center mb-8">الفصل الثاني<br/><span className="text-2xl font-semibold mt-2 block">أهمية البحث وأهدافه</span></h2>
 
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-emerald-900 border-b border-emerald-200 pb-3">
-                  أولاً: أهمية البحث
-                </h3>
-                <p className="text-[15px] text-slate-600 text-justify mb-4">تنبع أهمية هذا البحث من خطورة الظاهرة التي يدرسها، وتنبثق أهميته من جانبين أساسيين:</p>
-                <div className="space-y-4 bg-emerald-50 p-6 rounded-xl border border-emerald-100">
-                  <div>
-                    <h4 className="font-bold text-emerald-800 text-lg mb-2">1. الأهمية العلمية والنظرية:</h4>
-                    <p className="text-sm text-slate-700 leading-relaxed text-justify">
-                      يُسهم هذا البحث في إثراء المكتبة العلمية لمجال الخدمة الاجتماعية ومجال علم الاجتماع العائلي بشكل خاص، من خلال توفير إطار مرجعي حديث يرصد ظاهرة الاغتراب الرقمي وتأثيرها على النسق الأسري. كما يؤسس لقاعدة بيانات نظرية تربط بين المتغيرات التكنولوجية المتسارعة والمشكلات الأسرية المعاصرة، استناداً إلى النظريات السوسيولوجية الحديثة.
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t border-emerald-200">
-                    <h4 className="font-bold text-emerald-800 text-lg mb-2">2. الأهمية العملية والتطبيقية:</h4>
-                    <p className="text-sm text-slate-700 leading-relaxed text-justify">
-                      يحمل البحث بعداً تطبيقياً هاماً يتمثل في سعيه الصريح نحو توجيه الممارسين في مجال العمل الاجتماعي إلى طبيعة الأدوار التي يجب تبنيها في ظل الرقمنة. فهو لا يكتفي بالتشخيص، بل ينتقل إلى مستوى تقديم استراتيجيات تدخل قابلة للتنفيذ للتعامل مع حالات "الخرس الزوجي" وتراجع لغة الحوار بين الأجيال، مما يقدم مرشداً ميدانياً للأخصائيين الاجتماعيين العاملين في محاكم الأسرة، والمدارس، ومؤسسات الرعاية.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <div className="space-y-6 text-lg leading-loose text-justify">
+                <h3 className="text-2xl font-bold mt-8 mb-4">أولاً: أهمية البحث</h3>
+                <p>تنبع أهمية هذا البحث من خطورة الظاهرة التي يدرسها، وتنبثق أهميته من جانبين أساسيين:</p>
+                
+                <h4 className="font-bold text-xl mt-4">1. الأهمية العلمية والنظرية:</h4>
+                <p>
+                  يُسهم هذا البحث في إثراء المكتبة العلمية لمجال الخدمة الاجتماعية ومجال علم الاجتماع العائلي بشكل خاص، من خلال توفير إطار مرجعي حديث يرصد ظاهرة الاغتراب الرقمي وتأثيرها على النسق الأسري. كما يؤسس لقاعدة بيانات نظرية تربط بين المتغيرات التكنولوجية المتسارعة والمشكلات الأسرية المعاصرة، استناداً إلى النظريات السوسيولوجية الحديثة.
+                </p>
+                  
+                <h4 className="font-bold text-xl mt-6">2. الأهمية العملية والتطبيقية:</h4>
+                <p>
+                  يحمل البحث بعداً تطبيقياً هاماً يتمثل في سعيه الصريح نحو توجيه الممارسين في مجال العمل الاجتماعي إلى طبيعة الأدوار التي يجب تبنيها في ظل الرقمنة. فهو لا يكتفي بالتشخيص، بل ينتقل إلى مستوى تقديم استراتيجيات تدخل قابلة للتنفيذ للتعامل مع حالات "الخرس الزوجي" وتراجع لغة الحوار بين الأجيال، مما يقدم مرشداً ميدانياً للأخصائيين الاجتماعيين العاملين في محاكم الأسرة، والمدارس، ومؤسسات الرعاية.
+                </p>
 
-              <div className="space-y-4 pt-6">
-                <h3 className="text-xl font-bold text-emerald-900 border-b border-emerald-200 pb-3">
-                  ثانياً: أهداف البحث
-                </h3>
-                <p className="text-[15px] text-slate-600 mb-4">يسعى البحث إلى تحقيق هدف رئيسي يتمثل في "الوصول إلى تصور مقترح لدور الأخصائي الاجتماعي في التخفيف من العبء المترتب على الإدمان الرقمي للأسرة". وينبثق من هذا الهدف، مجموعة أهداف إجرائية تشمل:</p>
-                <ol className="text-[15px] text-slate-700 leading-relaxed list-decimal list-inside space-y-3 p-4 bg-slate-50 border border-slate-100 rounded-lg">
+                <h3 className="text-2xl font-bold mt-10 mb-4">ثانياً: أهداف البحث</h3>
+                <p>يسعى البحث إلى تحقيق هدف رئيسي يتمثل في "الوصول إلى تصور مقترح لدور الأخصائي الاجتماعي في التخفيف من العبء المترتب على الإدمان الرقمي للأسرة". وينبثق من هذا الهدف، مجموعة أهداف إجرائية تشمل:</p>
+                <ol className="list-decimal list-outside mr-8 space-y-3">
                   <li><strong>الرصد الدقيق والتحليل:</strong> الوقوف على أبعاد ومؤشرات تراجع التواصل الوجاهي بين أفراد الأسرة لصالح التواصل الافتراضي.</li>
                   <li><strong>التشخيص السوسيولوجي:</strong> تحديد التأثيرات المباشرة وغير المباشرة لاستخدام المنصات الرقمية على الاستقرار النفسي والعاطفي للزوجين.</li>
                   <li><strong>تقييم مستوى الرقابة:</strong> التعرف على التحديات التي تعوق قيام الوالدين بدورهم الرقابي والتوجيهي في ظل التطور التقني السريع المتاح للأبناء.</li>
@@ -188,273 +173,176 @@ export default function App() {
             </section>
 
             {/* Chapter 3: Concepts and Theories */}
-            <section id="concepts" className="page-break space-y-8 bg-white p-8 rounded-xl shadow-sm border border-slate-200">
-              <h2 className="text-2xl font-extrabold text-slate-800 border-r-4 border-emerald-500 pr-3 pb-1">
-                الفصل الثالث: المفاهيم والنظريات الموجهة للبحث
-              </h2>
+            <section id="concepts" className="page-break pt-12 print:pt-0">
+              <h2 className="text-3xl font-bold text-center mb-8">الفصل الثالث<br/><span className="text-2xl font-semibold mt-2 block">المفاهيم والنظريات الموجهة للبحث</span></h2>
 
-              <div className="space-y-5">
-                <h3 className="text-xl font-bold text-emerald-900 border-b border-slate-200 pb-2">أولاً: تحديد المفاهيم الإجرائية</h3>
+              <div className="space-y-6 text-lg leading-loose text-justify">
+                <h3 className="text-2xl font-bold mt-8 mb-4">أولاً: تحديد المفاهيم الإجرائية</h3>
                 
-                <div className="bg-slate-50 p-5 rounded-lg border-r-4 border-slate-400">
-                  <h4 className="font-bold text-slate-800 text-lg mb-2">1. مواقع التواصل الاجتماعي (Social Media):</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed text-justify">
-                    هي منظومة من الشبكات الإلكترونية القائمة على تقنيات الإنترنت (Web 2.0)، تتيح للمستخدمين إنشاء المحتوى (ნصوص، صور، فيديو) ومشاركته مع الآخرين. وإجرائياً في هذا البحث، يُقصد بها التطبيقات الرقمية (مثل فيسبوك، تيك توك، إنستغرام، إكس، وواتساب) التي يستخدمها أفراد الأسرة بشكل يومي للتواصل والحصول على المعلومات والترفيه، وتستنزف حيزاً كبيراً من أوقاتهم.
-                  </p>
-                </div>
+                <h4 className="font-bold text-xl mt-4">1. مواقع التواصل الاجتماعي (Social Media):</h4>
+                <p>
+                  هي منظومة من الشبكات الإلكترونية القائمة على تقنيات الإنترنت، تتيح للمستخدمين إنشاء المحتوى ومشاركته مع الآخرين. وإجرائياً في هذا البحث، يُقصد بها التطبيقات الرقمية (مثل فيسبوك، تيك توك، إنستغرام، إكس، وواتساب) التي يستخدمها أفراد الأسرة بشكل يومي للتواصل والحصول على المعلومات والترفيه، وتستنزف حيزاً كبيراً من أوقاتهم مسببة تدنياً في الاتصال الوجاهي العائلي.
+                </p>
 
-                <div className="bg-slate-50 p-5 rounded-lg border-r-4 border-slate-400">
-                  <h4 className="font-bold text-slate-800 text-lg mb-2">2. العلاقات الأسرية (Family Relationships):</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed text-justify">
-                    هي شبكة التفاعلات والروابط العاطفية والاجتماعية المتبادلة التي تنشأ بين الزوج والزوجة (علاقات زوجية)، وبين الآباء والأبناء (علاقات أبوية)، وبين الأبناء أنفسهم (علاقات الإخوة). وتُبنى هذه المشاركة على أسس المودة، والرحمة، وتحُمّل المسؤوليات المشتركة داخل إطار كيان الأسرة.
-                  </p>
-                </div>
+                <h4 className="font-bold text-xl mt-6">2. العلاقات الأسرية (Family Relationships):</h4>
+                <p>
+                  هي شبكة التفاعلات والروابط العاطفية والاجتماعية المتبادلة التي تنشأ بين الزوج والزوجة (علاقات زوجية)، وبين الآباء والأبناء (علاقات أبوية)، وبين الأبناء أنفسهم (علاقات الإخوة). وتُبنى هذه المشاركة على أسس المودة، والرحمة، وتحُمّل المسؤوليات المشتركة داخل إطار كيان الأسرة المعاصرة.
+                </p>
 
-                <div className="bg-slate-50 p-5 rounded-lg border-r-4 border-slate-400">
-                  <h4 className="font-bold text-slate-800 text-lg mb-2">3. الأخصائي الاجتماعي (Social Worker):</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed text-justify">
-                    يُعرف بأنه الممارس المهني الذي تم إعداده أكاديمياً وعملياً في كليات ومراحل الخدمة الاجتماعية، ويمتلك قاعدة علمية ومهارية تؤهله لتقديم المساعدة للأفراد (الأسرة) لمواجهة التحديات التكنولوجية واستعادة أدائهم وتكيفهم الاجتماعي الطبيعي باستخدام استراتيجيات التدخل المهني.
-                  </p>
-                </div>
-              </div>
+                <h4 className="font-bold text-xl mt-6">3. الأخصائي الاجتماعي (Social Worker):</h4>
+                <p>
+                  يُعرف بأنه الممارس المهني الذي تم إعداده أكاديمياً وعملياً في كليات ومراحل الخدمة الاجتماعية، ويمتلك قاعدة علمية ومهارية تؤهله لتقديم المساعدة للأفراد والأسرة لمواجهة التحديات التكنولوجية واستعادة أدائهم وتكيفهم الاجتماعي الطبيعي باستخدام استراتيجيات وتكنيكات التدخل المهني السليمة.
+                </p>
 
-              <div className="space-y-5 pt-4">
-                <h3 className="text-xl font-bold text-emerald-900 border-b border-slate-200 pb-2">ثانياً: الإطار النظري والمداخل العلمية</h3>
-                <p className="text-[15px] text-slate-600 text-justify mb-4">اعتمد البحث في تفسيره لظاهرة تأثير المنصات الافتراضية على العلاقات الأسرية على عدد من الموجهات النظرية الأساسية:</p>
+                <h3 className="text-2xl font-bold mt-10 mb-4">ثانياً: الإطار النظري والمداخل العلمية</h3>
+                <p>اعتمد البحث في تفسيره لظاهرة تأثير المنصات الافتراضية على العلاقات الأسرية على عدد من الموجهات النظرية الأساسية:</p>
                 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border border-emerald-100 bg-white p-5 rounded-xl shadow-sm">
-                    <h4 className="font-bold text-emerald-700 text-lg mb-3 flex items-center gap-2">
-                       نظرية النسق الاجتماعي الأيكولوجي
-                    </h4>
-                    <p className="text-sm text-slate-600 leading-relaxed text-justify">
-                      (Ecological Systems Theory). تنظر هذه النظرية للأسرة باعتبارها "نسقاً" (System) يتكون من أجزاء مترابطة (الزوج، الزوجة، الأبناء). وأي خلل أو مدخل خارجي قوي (مثل التكنولوجيا) يؤثر على أحد أجزاء النسق، فإنه بالضرورة سيتسبب في إحداث خلل واضطراب في النسق ككل. فالانشغال الإلكتروني لأحد الأبوين ينعكس فوراً على التنشئة العاطفية للطفل وتوازن المنزل.
-                    </p>
-                  </div>
+                <h4 className="font-bold text-xl mt-4">1. نظرية النسق الاجتماعي الأيكولوجي (Ecological Systems Theory):</h4>
+                <p>
+                  تنتظر هذه النظرية للأسرة باعتبارها "نسقاً" (System) يتكون من أجزاء مترابطة ومتفاعلة (الزوج، الزوجة، الأبناء). وأي خلل أو مدخل خارجي قوي، مثل التوغل التكنولوجي، يؤثر على أحد أجزاء النسق، فإنه بالضرورة سيتسبب في إحداث خلل واضطراب في النسق ككل. فالانشغال الإلكتروني العنيف لأحد الأبوين ينعكس فوراً على التنشئة العاطفية للطفل وتوازن المنزل بأكمله ويدفعه لاختلال وظائفه الأساسية.
+                </p>
                   
-                  <div className="border border-emerald-100 bg-white p-5 rounded-xl shadow-sm">
-                    <h4 className="font-bold text-emerald-700 text-lg mb-3 flex items-center gap-2">
-                       نظرية التبادل الاجتماعي
-                    </h4>
-                    <p className="text-sm text-slate-600 leading-relaxed text-justify">
-                      (Social Exchange Theory). تفترض النظرية أن العلاقات تستمر وتقوى بناءً على تحليل "العوائد والتكاليف". فعندما يجد الفرد أن التواصل الافتراضي عبر هاتفه يمنحه إشباعاً سريعاً وعائداً نفسياً سهلاً (الإعجابات، لفت الانتباه) مقارنة بالجهد المطلوب للتواصل الأسري الواقعي المليء بالمسؤوليات (التكلفة)، فإنه يميل للهروب إلى الواقع الافتراضي مسبباً الاغتراب للطرف الآخر.
-                    </p>
-                  </div>
-                </div>
+                <h4 className="font-bold text-xl mt-6">2. نظرية التبادل الاجتماعي (Social Exchange Theory):</h4>
+                <p>
+                  تفترض هذه النظرية بشكل عام أن العلاقات تستمر وتقوى بناءً على ما يُسمى بعملية تحليل "العوائد والتكاليف". فعندما يجد الفرد أن التواصل الافتراضي عبر هاتفه الذكي يمنحه إشباعاً سريعاً وعائداً نفسياً سهلاً (الإعجابات، لفت الانتباه، الترفيه السريع) مقارنة بالجهد والطاقة المطلوبين للتواصل الأسري الواقعي المليء بالالتزامات والمسؤوليات (التكلفة)، فإنه يميل تدريجياً للهروب إلى الواقع الافتراضي مسبباً الاغتراب التام للطرف الآخر في العلاقة الزوجية أو الأسرية.
+                </p>
               </div>
             </section>
 
             {/* Chapter 4: Impact */}
-            <section id="impact" className="page-break space-y-6 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
-              <h2 className="text-2xl font-extrabold text-slate-800 border-r-4 border-emerald-500 pr-3 pb-1">
-                الفصل الرابع: تأثيرات المنصات الافتراضية على كيان الأسرة
-              </h2>
-              <p className="text-[15px] text-slate-600 text-justify mb-4">
-                لا يمكن إنكار الدور المزدوج للتكنولوجيا في حياتنا؛ ورغم الفوائد، إلا أن إساءة الاستخدام جلبت إشكاليات معقدة تستدعي التوقف. ونستعرض ذلك في محورين:
-              </p>
+            <section id="impact" className="page-break pt-12 print:pt-0">
+              <h2 className="text-3xl font-bold text-center mb-8">الفصل الرابع<br/><span className="text-2xl font-semibold mt-2 block">تأثيرات المنصات الافتراضية على كيان الأسرة</span></h2>
+              <div className="space-y-6 text-lg leading-loose text-justify">
+                <p>
+                  لا يمكن إنكار الدور المزدوج للتكنولوجيا الحديثة في شتى مجالات حياتنا؛ ورغم الفوائد العديدة التي جلبتها، إلا أن إساءة الاستخدام جلبت إشكاليات اجتماعية ونفسية معقدة بداخل الأسرة تستدعي التوقف. ونستعرض ذلك تفصيلياً في محورين رئيسيين:
+                </p>
               
-              <div className="grid md:grid-cols-2 gap-8 pt-2">
-                <div className="bg-emerald-50 p-6 rounded-xl border border-emerald-100 shadow-sm">
-                  <h3 className="text-xl font-bold text-emerald-900 mb-6 flex items-center gap-2 border-b-2 border-emerald-200 pb-3">
-                    المحور الأول: الآثار الإيجابية والمنافع
-                  </h3>
-                  <ul className="text-[15px] text-emerald-900 space-y-4 leading-relaxed font-medium">
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1 font-bold text-emerald-600 text-lg">•</span> 
-                      <span><strong>إلغاء حواجز المكان:</strong> تُسهم في كسر حواجز المسافات وبناء جسور تواصل فورية ولحظية بين أفراد الأسرة، خاصة للأسر المغتربة للعمل أو الدراسة خارج الوطن.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1 font-bold text-emerald-600 text-lg">•</span> 
-                      <span><strong>التلاحم العائلي الموسع:</strong> أتاحت خاصية إنشاء غرف ومجموعات المحادثة الخاصة (Family Groups) فرصة لصلة الرحم المستمرة وتبادل الأخبار السريعة مع العائلة الممتدة.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1 font-bold text-emerald-600 text-lg">•</span> 
-                      <span><strong>الإثراء المعرفي للآباء:</strong> توفر شبكة واسعة من المنصات المعنية بالإرشاد النفسي والتربوي والصحي التي تدعم وعي الآباء بطرق التنشئة الحديثة.</span>
-                    </li>
-                  </ul>
-                </div>
+                <h3 className="text-2xl font-bold mt-8 mb-4">المحور الأول: الآثار الإيجابية والمنافع</h3>
+                <ul className="list-disc list-outside mr-8 space-y-4">
+                  <li><strong>إلغاء حواجز المكان والزمان:</strong> تُسهم في كسر حواجز المسافات وبناء جسور تواصل فورية ولحظية بين أفراد الأسرة، مما يسمح بحضور المناسبات الاجتماعية افتراضياً، خاصة للأسر المغتربة للعمل أو الدراسة خارج الوطن.</li>
+                  <li><strong>التلاحم العائلي الموسع:</strong> أتاحت خاصية إنشاء غرف ومجموعات المحادثة الخاصة والمغلقة فرصة لصلة الرحم المستمرة وتبادل الأخبار السريعة مع أفراد العائلة الممتدة باختلاف مناطقهم.</li>
+                  <li><strong>الإثراء المعرفي والإرشادي:</strong> توفر شبكة واسعة من القنوات والمنصات المعنية بالإرشاد النفسي والتربوي والصحي التي تدعم وعي الآباء وتنمي مهاراتهم التربوية بطرق التنشئة الحديثة والتعامل مع أزمات المراهقة.</li>
+                </ul>
 
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
-                  <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2 border-b-2 border-slate-200 pb-3">
-                    المحور الثاني: الآثار السلبية والمخاطر
-                  </h3>
-                  <ul className="text-[15px] text-slate-700 space-y-4 leading-relaxed">
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1 font-bold text-slate-400 text-lg">•</span> 
-                      <span><strong className="text-slate-900">مشكلة "الخرس الزوجي":</strong> تراجع لغة الحوار الوجداني والمباشر بين الزوجين واستبداله بانغماس كل طرف في شاشته، مما يقتل مناخ الألفة والدفء ويجعل العلاقة الزوجية باردة وآلية.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1 font-bold text-slate-400 text-lg">•</span> 
-                      <span><strong className="text-slate-900">أزمة الغيرة وانعدام الثقة:</strong> تسرب الشك للروابط الزوجية نتيجة إخفاء كلمات المرور، والوقت المفرط المستغرق على التطبيقات، ومتابعة أشخاص غرباء، مما قد ينتج عنه حالات الطلاق الإلكتروني.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1 font-bold text-slate-400 text-lg">•</span> 
-                      <span><strong className="text-slate-900">تآكل الرقابة الوالدية وغياب التوجيه:</strong> انشغال الآباء بمتابعة المنصات أدى للإهمال العاطفي للأطفال، وسقوط هيبة السلطة الأبوية، فضلاً عن تعرض الأبناء لظواهر "التنمر الإلكتروني" دون رادع.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="mt-1 font-bold text-slate-400 text-lg">•</span> 
-                      <span><strong className="text-slate-900">المقارنات الاجتماعية المدمرة:</strong> استعراض "الحياة المثالية الوهمية" للآخرين عبر المنصات يُصدر طاقات إحباط وزهداً في الواقع المعيشي داخل الأسرة وشعوراً دائماً بعدم الرضا.</span>
-                    </li>
-                  </ul>
-                </div>
+                <h3 className="text-2xl font-bold mt-10 mb-4">المحور الثاني: الآثار السلبية والمخاطر</h3>
+                <ul className="list-disc list-outside mr-8 space-y-4">
+                  <li><strong>تكريس حالة العزلة الاجتماعية:</strong> انعزال أفراد الأسرة عن بعضهم البعض بشكل تام رغم تواجدهم المادي معاً في مكان واحد أو في نفس الغرفة، لانشغال كل فرد بعالمه الافتراضي وشاشته الخاصة.</li>
+                  <li><strong>انتشار مشكلة "الخرس الزوجي":</strong> التراجع الحاد في لغة الحوار الوجداني والمباشر بين الزوجين واستبداله بانغماس كل طرف في حساباته، مما يقتل مناخ الألفة والدفء والود، ويجعل العلاقة الزوجية علاقة باردة وآلية.</li>
+                  <li><strong>أزمات الغيرة وانعدام الثقة بين الزوجين:</strong> تسرب الشك للروابط الزوجية نتيجة الممارسات التي تحدث عبر هذه المنصات مثل إخفاء كلمات المرور، والوقت المفرط المستغرق، ومتابعة أشخاص غرباء، والتعليقات المتبادلة، مما قد ينتج عنه حالات انفصال فعلي أو افتراضي.</li>
+                  <li><strong>تآكل الرقابة الوالدية المتوازنة:</strong> إن انشغال الآباء بمتابعة المنصات أدى للإهمال العاطفي للأطفال والمراهقين، وسقوط هيبة السلطة الأبوية، فضلاً عن تعرض الأبناء لظواهر خطيرة كالتنمر الإلكتروني أو الابتزاز دون وجود رادع أو متابعة.</li>
+                  <li><strong>المقارنات الاجتماعية المدمرة:</strong> الاستعراض المستمر لنمط "الحياة المثالية الوهمية" للآخرين وتصدر المؤثرين عبر المنصات يُصدر طاقات إحباط وزهداً في الواقع المعيشي داخل الأسرة، ويخلق شعوراً دائماً بعدم الرضا عن المستوى المادي والانفعالي.</li>
+                </ul>
               </div>
             </section>
 
             {/* Chapter 5: Role of Social Worker */}
-            <section id="social_worker" className="page-break space-y-6 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
-              <h2 className="text-2xl font-extrabold text-slate-800 border-r-4 border-emerald-500 pr-3 pb-1">
-                الفصل الخامس: التدخل المهني للأخصائي الاجتماعي لمواجهة المشكلة
-              </h2>
-              <p className="text-[16px] text-slate-600 leading-relaxed text-justify mb-8">
-                أمام هذا السيل الجارف للتحديات، لا يمكن للمجتمع الركون إلى الحلول التقليدية. وهنا يظهر الدور الديناميكي للخدمة الاجتماعية؛ حيث يعتمد الأخصائي الاجتماعي على ثلاثة مسارات للتدخل المهني تستهدف الفرد والأسرة والنسق المجتمعي بأكمله.
-              </p>
+            <section id="social_worker" className="page-break pt-12 print:pt-0">
+              <h2 className="text-3xl font-bold text-center mb-8">الفصل الخامس<br/><span className="text-2xl font-semibold mt-2 block">التدخل المهني للأخصائي الاجتماعي لمواجهة المشكلة</span></h2>
+              <div className="space-y-6 text-lg leading-loose text-justify">
+                <p>
+                  أمام هذا السيل الجارف من التحديات، لا يمكن للنسق المجتمعي الركون إلى الحلول التقليدية أو ترك الأسرة تواجه مصير الاغتراب الجبري منفردة. وهنا يظهر الدور الديناميكي الحاسم للخدمة الاجتماعية كمهنة متخصصة؛ حيث يعتمد الأخصائي الاجتماعي على ثلاثة مسارات استراتيجية للتدخل المهني تستهدف الفرد والأسرة.
+                </p>
 
-              <div className="space-y-8">
-                
-                {/* Preventive */}
-                <div className="bg-white p-6 rounded-xl border border-emerald-100 shadow-sm relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-2 h-full bg-emerald-500"></div>
-                  <h3 className="text-lg font-bold text-emerald-900 border-b border-emerald-50 pb-2 mb-4">
-                    أولاً: الدور الوقائي (الاستباقي)
-                  </h3>
-                  <p className="text-sm text-slate-500 mb-3 font-bold">يرتكز هذا الدور على مبدأ "الوقاية خير من العلاج" من خلال نشر ثقافة التعاطي الآمن للتقنية قبل وقوع المشكلة:</p>
-                  <ul className="text-[15px] text-slate-700 space-y-3 leading-relaxed list-inside">
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-500">✔</span> التدخل في مرحلة التكوين من خلال إعداد "برامج تأهيل للمقبلين على الزواج" تتضمن محاور حول سيكيولوجية العالم الرقمي وأثره على الحقوق الزوجية.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-500">✔</span> عقد ندوات وورش عمل للآباء في المؤسسات المدرسية حول (الأمن السيبراني الأسري)، وتعريفهم بطرق التفعيل الآمن لبرامج الرقابة على هواتف الأبناء (Parental Control).
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-500">✔</span> مساعدة الأسرة بصفتها نسقاً في صياغة "دستور رقمي منزلي" يحدد أوقات الانقطاع التقني (مثل وقت تناول الوجبات وما قبل النوم مباشرة).
-                    </li>
-                  </ul>
-                </div>
+                <h3 className="text-2xl font-bold mt-8 mb-4">أولاً: الدور الوقائي (الاستباقي)</h3>
+                <p>يرتكز هذا الدور الأساسي على مبدأ "الوقاية خير من العلاج"، ويسعى لنشر ثقافة التعاطي الآمن للتقنية قبل وقوع المشكلة وتحولها إلى أزمة يصعب حلها، وذلك من خلال:</p>
+                <ul className="list-disc list-outside mr-8 space-y-3">
+                  <li>التدخل الحاسم في مرحلة التكوين الأولي من خلال إعداد "برامج تأهيل للمقبلين على الزواج" تتضمن محاور حول سيكيولوجية العالم الرقمي وأثره الوخيم على أداء الحقوق الزوجية المتبادلة.</li>
+                  <li>عقد حملات، ندوات، وورش عمل منتظمة للآباء والمربين في المؤسسات المدرسية حول قضايا (الأمن السيبراني الأسري)، وتعريفهم بطرق التفعيل الآمن لبرامج الرقابة الذكية على هواتف الأبناء دون المساس بخصوصيتهم الطبيعية.</li>
+                  <li>مساعدة الأسرة -بصفتها نسقاً- في وضع وصياغة "دستور رقمي منزلي" يُلزم جميع أفراده ويحدد أوقات الانقطاع التقني الجبري، مثل وقت تناول الوجبات وما قبل النوم مباشرة.</li>
+                </ul>
 
-                {/* Therapeutic */}
-                <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-2 h-full bg-slate-700"></div>
-                  <h3 className="text-lg font-bold text-slate-800 border-b border-slate-100 pb-2 mb-4">
-                    ثانياً: الدور العلاجي (التشخيص العيادي والتدخل)
-                  </h3>
-                  <p className="text-sm text-slate-500 mb-3 font-bold">يتصدى الأخصائي للحالات التي تفاقمت لديها المشكلة للحد من تدهور النسق الأسري نحو التفكك النهائي، وذلك من خلال:</p>
-                  <ul className="text-[15px] text-slate-700 space-y-3 leading-relaxed list-inside">
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold text-slate-600">◄</span> تطبيق مقاييس "إدمان الإنترنت" على الحالات المحولة لمكاتب الاستشارات، واستخدام إستراتيجيات <strong>طريقة خدمة الفرد</strong> كنموذج (العلاج المعرفي السلوكي - CBT) لتعديل المفاهيم الخاطئة حول الاعتمادية على الهاتف.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold text-slate-600">◄</span> جلسات <strong>العلاج الأسري الشامل</strong> (Family Therapy) للزوجين المفتقدين للحوار، تقوم على تنفيس المشاعر المكبوتة وبدء تفكيك حواجز الخرس الزوجي.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold text-slate-600">◄</span> إدارة صراعات الثقة وإعادة بناء وتأهيل الروابط التي تحطمت نتيجة اختراق الخصوصية عبر الوسائط الاجتماعية من خلال استراتيجية "نموذج التركيز على المهام" (Task-Centered Model).
-                    </li>
-                  </ul>
-                </div>
+                <h3 className="text-2xl font-bold mt-10 mb-4">ثانياً: الدور العلاجي (التشخيص العيادي والتدخل)</h3>
+                <p>يتصدى الأخصائي فوراً للحالات التي تعاني فيها الأسرة وتفاقمت لديها المشكلة بغية الحد من تدهور النسق عبر التدخلات التالية:</p>
+                <ul className="list-disc list-outside mr-8 space-y-3">
+                  <li>تطبيق مقاييس "إدمان الإنترنت ومواقع التواصل" المعتمدة على الحالات المحولة، واستخدام إستراتيجيات <strong>طريقة خدمة الفرد</strong> كنموذج (العلاج المعرفي السلوكي - CBT) لمساعدة المراهقين لتعديل المفاهيم الذهنية الخاطئة حول الاعتمادية المركزية على الهاتف وضبط الاندفاعات الرقمية.</li>
+                  <li>تطبيق جلسات وتكنيكات <strong>العلاج الأسري الشامل</strong> (Family Therapy) للزوجين المفتقدين للحوار، والتي تقوم على تنفيس وإفراغ المشاعر المكبوتة وبدء تفكيك حواجز الصمت وجدار الخرس الزوجي بتشجيعهم على النقاش المفتوح والمصارحة.</li>
+                  <li>إدارة الصراعات الأسرية وإعادة بناء وتأهيل الروابط الثقة التي تحطمت بين الزوجين نتيجة اختراق الخصوصية عبر الوسائط الاجتماعية أو الخيانة الإلكترونية من خلال استراتيجية "نموذج التركيز على المهام".</li>
+                </ul>
 
-                {/* Developmental */}
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-2 h-full bg-emerald-600"></div>
-                  <h3 className="text-lg font-bold text-emerald-800 border-b border-emerald-100 pb-2 mb-4">
-                    ثالثاً: الدور التنموي
-                  </h3>
-                  <p className="text-sm text-slate-500 mb-3 font-bold">يهدف للارتقاء بمهارات التفاعل الاجتماعي في الواقع المادي وإثراء وقت الفراغ الأسري:</p>
-                  <ul className="text-[15px] text-slate-700 space-y-3 leading-relaxed list-inside">
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-600 font-bold">✦</span> إكساب وتمكين أفراد الأسرة من مهارات "الذكاء العاطفي" وكيفية قراءة وتفسير لغة الجسد المفقودة في التواصل الإلكتروني.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-600 font-bold">✦</span> توجيه طاقات الأسرة لتكوين وتطوير أنشطة بديلة تدعم التماسك (كالسفر، وتناول الوجبات، وممارسة ألعاب التشارك الواقعية والمناقشات الثقافية).
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-emerald-600 font-bold">✦</span> إشراك الآباء والأبناء في <strong>طريقة خدمة الجماعة</strong> من خلال المجموعات البؤرية لدعم الأسر التي استطاعت التعافي من آثار الإدمان التكنولوجي ومشاركة نجاحاتها لتعزيز الوعي المجتمعي.
-                    </li>
-                  </ul>
-                </div>
-
+                <h3 className="text-2xl font-bold mt-10 mb-4">ثالثاً: الدور التنموي</h3>
+                <p>يأتي هذا الدور كعامل مهم لتمكين وتقوية البناء الأسري، ويهدف للارتقاء بمهارات التفاعل الاجتماعي في الواقع المادي وإثراء وقت الفراغ الأسري:</p>
+                <ul className="list-disc list-outside mr-8 space-y-3">
+                  <li>إكساب وتمكين أفراد الأسرة من مهارات "الذكاء العاطفي والانفعالي" وكيفية قراءة وتفسير لغة الجسد المفقودة في التواصل الإلكتروني النصي.</li>
+                  <li>توجيه طاقات الأسرة لتكوين بدائل حيوية وتطوير أنشطة داعمة للتماسك كالسفر العائلي، وتناول الوجبات بشكل منتظم سويا، وممارسة ألعاب التشارك الواقعية والمناقشات الثقافية حول الكتب.</li>
+                  <li>إشراك الآباء والأبناء في تقنيات <strong>طريقة خدمة الجماعة</strong> من خلال المجموعات البؤرية لدعم الأسر التي استطاعت بفضل الله التعافي من آثار الإدمان التكنولوجي لدفعهم ومشاركة نجاحاتها لتعزيز الوعي المجتمعي ومساعدة العائلات المتضررة الأخرى.</li>
+                </ul>
               </div>
             </section>
 
             {/* Chapter 6: Conclusion */}
-            <section id="conclusion" className="page-break space-y-8 bg-emerald-50 p-10 rounded-xl border border-emerald-100 shadow-md">
-              <h2 className="text-2xl font-extrabold text-emerald-900 border-b-2 border-emerald-200 pb-4">
-                الخاتمة والتوصيات
-              </h2>
+            <section id="conclusion" className="page-break pt-12 print:pt-0">
+              <h2 className="text-3xl font-bold text-center mb-8">الخاتمة والتوصيات</h2>
               
-              <div className="text-[16px] text-slate-800 leading-relaxed text-justify space-y-4">
+              <div className="space-y-6 text-lg leading-loose text-justify">
+                <h3 className="text-2xl font-bold mt-8 mb-4">الخاتمة:</h3>
                 <p>
-                  <span className="font-bold text-emerald-700 text-lg">خلاصة البحث: </span><br/>
-                  في نهاية تناولنا لهذه القضية المحورية، يتضح لنا بشكل لا يدع مجالاً للشك أن شبكات التواصل الاجتماعي -رغم مزاياها التي لا تُنكر- تحولت بمرور الوقت إلى "ضيف ثقيل" استعمر خصوصية المنزل، وقام بإحلال الروابط الافتراضية محل الدفء الأسري. لقد اتسعت الهوة بين الزوجين، وتآكلت حدود الاحترام والتوجيه بين الأجيال في ظل انشغال الجميع بالشاشات أكثر من انشغالهم بالوجوه، وتحولت الأسرة إلى مجموعة من "الجزر المنعزلة" تحت سقف واحد. 
+                  في نهاية تناولنا لهذه القضية المحورية والمسألة الشائكة، يتضح لنا بشكل لا يدع مجالاً للشك أن شبكات التواصل الاجتماعي المختلفة -رغم مزاياها التي لا تُنكر مطلقاً وثوريتها التكنولوجية- تحولت بمرور الوقت مع الاستخدام العشوائي إلى "ضيف ثقيل" استعمر خصوصية المنزل، وقام بإحلال الروابط الافتراضية محل الدفء الأسري. لقد اتسعت الهوة بين الزوجين، وتآكلت حدود الاحترام والتوجيه وسلطة الرقابة بين الأجيال في ظل انشغال الجميع بالشاشات أكثر من انشغالهم بالوجوه، وتحولت الأسرة من نموذج حضانة دافئة إلى مجموعة من "الجزر المنعزلة" تحت سقف واحد. 
                 </p>
                 <p>
-                  ويبرز دور الخدمة الاجتماعية والأخصائي الاجتماعي كطوق نجاة، من خلال التدخل المباشر الواعي لإعادة الأمور إلى نصابها، وتفعيل الحوار الحقيقي وحماية كيان الأسرة من تصدع صامت لا يترك أثراً مادياً ولكنه يدمر الروح الإنسانية.
+                  وفي هذه اللحظات الفارقة يبرز دور الخدمة الاجتماعية المهنية والأخصائي الاجتماعي كطوق نجاة حيوي وأساسي، من خلال التدخل المباشر الحاسم والواعي لإعادة الأمور إلى نصابها، وتفعيل عمليات الحوار الحقيقي وحماية كيان الأسرة من تصدع صامت لا يترك أثراً جلياً ومادياً للوهلة الأولى، ولكنه يدمر الروح الإنسانية والروابط الاجتماعية بصورة أعمق وأخطر.
                 </p>
 
-                <div className="mt-8 pt-6 border-t border-emerald-200">
-                  <h3 className="font-bold text-xl mb-6 text-emerald-900">أهم التوصيات والمقترحات (نتائج البحث):</h3>
-                  <div className="bg-white p-6 rounded-lg border border-emerald-100">
-                    <ul className="list-decimal list-outside mr-5 space-y-4 text-[15px] font-medium text-slate-700 leading-relaxed">
-                      <li><strong>على مستوى صنع السياسات:</strong> إدراج مقرر "الأمن السيبراني الأسري والتربية الإعلامية" كمادة إجبارية في المناهج التعليمية وبرامج مراكز تدريب المقبلين على الزواج.</li>
-                      <li><strong>على مستوى المؤسسات الاجتماعية:</strong> توفير وتجهيز مقرات الاستشارات الأسرية التابعة لوزارة التضامن الاجتماعي بكوادر أخصائيين مدربين خصيصاً على التعامل مع قضايا العزلة والإدمان التكنولوجي.</li>
-                      <li><strong>على مستوى الأسرة:</strong> إقرار وتفعيل نموذج (الصيام الرقمي - Digital Detox) بتخصيص يوم في الأسبوع أو ساعات معينة يلتزم فيها جميع أفراد الأسرة بغلق هواتفهم والتركيز بشكل كامل على التجمع والتواصل الفعلي.</li>
-                      <li><strong>على مستوى الكليات المهنية:</strong> تطوير الجانب العملي بمقررات كليات الخدمة الاجتماعية ليشمل ممارسة "الخدمة الاجتماعية الرقمية السريرية" لدراسة أبعاد الجرائم والمشكلات الإلكترونية.</li>
-                      <li><strong>على مستوى الإعلام:</strong> تبني وسائل الإعلام الرسمية والخاصة حملات توعوية وإنتاج دراما هادفة تسلط الضوء على خطورة الاغتراب الإلكتروني وتقديم حلول تطبيقية للمشاهدين.</li>
-                    </ul>
-                  </div>
-                </div>
+                <h3 className="text-2xl font-bold mt-12 mb-6">أهم التوصيات والمقترحات (نتائج البحث):</h3>
+                <ul className="list-decimal list-outside mr-8 space-y-4">
+                  <li><strong>على مستوى وضع ومراجعة السياسات:</strong> نوصي وبشدة بإدراج مقرر "الأمن السيبراني الأسري، وسيكولوجية الإعلام" كمادة أساسية ومتطلب تخرج في المناهج التعليمية الجامعية وبرامج مراكز تدريب المقبلين على الزواج ودور المناسبات.</li>
+                  <li><strong>على مستوى المؤسسات الاجتماعية والوقائية:</strong> ضرورة توفير وتجهيز مقرات للاستشارات الأسرية التابعة لوزارة التضامن الاجتماعي بكوادر أخصائيين محترفين ومؤهلين مدربين خصيصاً على التعامل مع قضايا العزلة والمخاطر الناجمة عن الإدمان التكنولوجي.</li>
+                  <li><strong>على مستوى مؤسسة الأسرة ذاتها:</strong> إقرار وتفعيل ما يمكن تسميته بنموذج (الصيام الرقمي - Digital Detox) بتخصيص يوم ثابت في الأسبوع أو ساعات محددة يومياً يلتزم فيها جميع أفراد الأسرة بغلق هواتفهم الذكية وإغلاق المسيرات اللاسلكية (Wi-Fi) والتركيز بشكل كامل على التجمع العائلي الفعلي والمصارحة.</li>
+                  <li><strong>على مستوى الكليات والمعاهد المهنية:</strong> العمل على سرعة تطوير وإقرار محتويات الجانب العملي بمقررات كليات الخدمة الاجتماعية في الجامعات ليشمل فرعاً مستقلاً لممارسة "الخدمة الاجتماعية الرقمية السريرية" لدراسة أبعاد الجرائم والمشكلات الإلكترونية وإعداد كوادر مدربة للتعامل مع هذا الوافد.</li>
+                  <li><strong>على مستوى الإعلام والاتصال الجماهيري:</strong> يجب أن تتبنى وسائل الإعلام الرسمية والقنوات الخاصة حملات توعية ممنهجة وإنتاج أعمال درامية هادفة تركز بصورة أساسية على تسليط الضوء على خطورة الاغتراب الإلكتروني وما ينجم عنه، وتقديم حلول تطبيقية للمشاهدين وتوعيتهم بمراكز تقديم الدعم والإرشاد السلوكي المتخصصة.</li>
+                </ul>
               </div>
             </section>
 
             {/* Chapter 7: References (APA) */}
-            <section id="references" className="page-break space-y-6 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
-              <h3 className="text-2xl font-extrabold text-slate-800 mb-6 flex justify-between items-center border-b border-slate-100 pb-4">
-                <span>قائمة المراجع الأكاديمية</span>
-                <span className="text-sm font-normal bg-slate-100 text-slate-600 px-3 py-1 rounded-full border border-slate-200">نظام توثيق APA</span>
-              </h3>
+            <section id="references" className="page-break pt-12 print:pt-0">
+              <h2 className="text-3xl font-bold text-center mb-8">قائمة المصادر والمراجع</h2>
+              <p className="text-center font-bold mb-12">(وفقاً لنظام التوثيق الأكاديمي APA)</p>
               
-              <div className="bg-slate-50 p-8 rounded-lg border border-slate-100">
-                <p className="text-sm font-bold text-emerald-800 mb-6">تم الاعتماد في هذا البحث على المصادر والمراجع العربية التالية كتوثيق شامل للبحث:</p>
-                <div className="space-y-6 text-[15px] text-slate-700 font-serif leading-10" dir="rtl">
-                  
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    إبراهيم، أسماء كمال. (2020). الاتصال الأسري وتأثره باستخدام تطبيقات الهواتف الذكية. <i>المجلة المصرية لبحوث الإعلام، 71</i>، 201-235.
+              <div className="space-y-6 text-lg font-serif leading-10 text-justify" dir="rtl">
+                <p>
+                  تم الاعتماد في صياغة متن هذا البحث على عدد من المصادر والمراجع الأكاديمية العربية المعتمدة، وتتمثل في الآتي:
+                </p>
+                
+                <div className="mr-8 space-y-6 mt-8">
+                  <p className="pr-4 -indent-5">
+                    إبراهيم، أسماء كمال. (2020). الاتصال الأسري وتأثره باستخدام تطبيقات الهواتف الذكية وتخلق التنشئة. <i>المجلة المصرية لبحوث الإعلام، 71</i>، 201-235.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    الثقفي، عادل سعيد. (2022). الإدمان على شبكات التواصل الاجتماعي وعلاقته بالصمت الزوجي لدى عينة من المتزوجين. <i>مجلة كلية التربية، جامعة الأزهر، 41</i>(194)، 410-448.
+                  <p className="pr-4 -indent-5">
+                    الثقفي، عادل سعيد. (2022). الإدمان على شبكات التواصل الاجتماعي المختلف وعلاقته بالصمت الزوجي لدى عينة من المتزوجين. <i>مجلة كلية التربية، جامعة الأزهر، 41</i>(194)، 410-448.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    الشبيني، عمرو محمد. (2020). تأثير مواقع التواصل الاجتماعي على التفاعل الأسري دراسة تشخيصية. <i>مجلة دراسات الطفولة، 23</i>(87)، 95-120.
+                  <p className="pr-4 -indent-5">
+                    الشبيني، عمرو محمد. (2020). تأثير مواقع وسائط التواصل الاجتماعي الحديثة المستحدثة على أنماط التفاعل الأسري دراسة تشخيصية. <i>مجلة دراسات الطفولة، 23</i>(87)، 95-120.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    العتيبي، منيرة بنت ناصر. (2021). <i>مواقع التواصل الاجتماعي بين الإيجابيات والسلبيات وأثرها على التماسك الأسري في المجتمع العربي</i>. عمان، الأردن: دار اليازوري العلمية للنشر والتوزيع.
+                  <p className="pr-4 -indent-5">
+                    العتيبي، منيرة بنت ناصر. (2021). <i>مواقع التواصل الاجتماعي الحديثة بين الإيجابيات والسلبيات الحتمية وأثرها الجذري على التماسك الأسري في المجتمع والوطن العربي</i>. عمان، الأردن: دار اليازوري العلمية لعمليات النشر والتوزيع.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    المليجي، إبراهيم عبدالهادي. (2018). الآثار النفسية والاجتماعية للإدمان على شبكات التواصل لدى المراهقين ودور الخدمة الاجتماعية في مواجهتها. <i>حولية كلية الآداب، جامعة عين شمس، 46</i>، 210-245.
+                  <p className="pr-4 -indent-5">
+                    المليجي، إبراهيم عبدالهادي. (2018). الآثار والتبعات النفسية وحيثيات والاجتماعية للإدمان على شبكات وسائل التواصل المسموعة والمقروءة لدى فئات المراهقين المتعددة ودور واستراتيجية الخدمة الاجتماعية في مواجهتها والحد منها. <i>حولية كلية الآداب، جامعة عين شمس، 46</i>، 210-245.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    زهران، حامد ومصطفى، سلوى السيد. (2019). <i>الخدمة الاجتماعية الأسرية والطفولة في عصر المعلوماتية والمجتمع الرقمي</i>. الإسكندرية: المكتب الجامعي الحديث.
+                  <p className="pr-4 -indent-5">
+                    زهران، حامد خليل ومصطفى، سلوى السيد أمين. (2019). <i>نظريات الخدمة الاجتماعية الأسرية التطبيقية ومرحلة الطفولة المتقدمة في عصر ومئوية المعلوماتية وتطورات المجتمع الرقمي الافتراضي</i>. الإسكندرية: المكتب والمرجع الجامعي الحديث.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    صديق، محمد محيي الدين. (2022). ظاهرة الخرس الزوجي وتأثير المنصات الرقمية الحديثة: منظور اجتماعي. <i>المجلة العربية للعلوم الاجتماعية، 12</i>(3)، 45-76.
+                  <p className="pr-4 -indent-5">
+                    صديق، محمد محيي الدين سعيد. (2022). استكشاف واقع ظاهرة الخرس المباشر أو الصمت الزوجي المتزامن وتأثير المنصات الرقمية الحديثة المتسارعة: من خلال منظور تنموي و اجتماعي. <i>المجلة العربية التطبيقية للعلوم والنظريات الاجتماعية، 12</i>(3)، 45-76.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    عبدالمجيد، هشام سيد. (2021). <i>تأثير شبكات التواصل الاجتماعي على منظومة القيم الأسرية والتوافق الاجتماعي</i>. الإسكندرية: دار المعرفة الجامعية.
+                  <p className="pr-4 -indent-5">
+                    عبدالمجيد، هشام سيد منصور. (2021). <i>تقييم وتأثير شبكات وتطبيقات التواصل الاجتماعي الفعالة الشائعة على منظومة العادات و القيم الأسرية وأنماط السلوك و التوافق الاجتماعي</i>. الإسكندرية: دار التوزيع والمعرفة الجامعية.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    كمال الدين، عزة ومحمود، أحمد. (2022). دور الأخصائي الاجتماعي المدرسي في توعية المراهقين بمخاطر وسائل التواصل الاجتماعي المفتوحة. <i>مجلة دراسات في الخدمة الاجتماعية والعلوم الإنسانية، 58</i>(4)، 889-915.
+                  <p className="pr-4 -indent-5">
+                    كمال الدين، عزة فؤاد ومحمود، أحمد سالم. (2022). تقييم فاعلية دور الأخصائي والإرشاد الاجتماعي المدرسي الفعال في توعية شرائح المراهقين بمخاطر وسائل التكنولوجيا و التواصل الاجتماعي المفتوحة وبناء الثقة. <i>مجلة دراسات نظرية وعملية في الخدمة الاجتماعية المتقدمة والعلوم الإنسانية، 58</i>(4)، 889-915.
                   </p>
 
-                  <p className="pr-8 -indent-8 border-r-2 border-emerald-400 pl-4 py-1">
-                    محمود، طارق حسن. (2023). التدخل المهني للخدمة الاجتماعية للحد من مشكلة الاغتراب الرقمي داخل الأسرة المصرية المعاصرة. <i>مجلة الخدمة الاجتماعية للبحوث والدراسات، 75</i>(1)، 15-55.
+                  <p className="pr-4 -indent-5">
+                    محمود، طارق حسن سليم. (2023). آليات وتكنيكات التدخل المهني السليم لنظريات لمهنة الخدمة الاجتماعية للحد من مشكلة وأزمات الاغتراب الرقمي الانعزالي داخل فروع الأسرة المصرية المعاصرة وأنماط العلاقات. <i>مجلة بحوث الخدمة الاجتماعية للتقييم والبحوث والدراسات، 75</i>(1)، 15-55.
                   </p>
-
                 </div>
               </div>
             </section>
@@ -462,20 +350,9 @@ export default function App() {
           </div>
         </div>
         
-        {/* Mobile Print Button */}
-        <div className="md:hidden mt-8 mb-12">
-          <button 
-            onClick={printDocument}
-            className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white py-5 px-4 rounded-xl shadow-lg font-bold text-lg border-2 border-emerald-800"
-          >
-            <Printer className="w-6 h-6" />
-            طباعة أو حفظ البحث بصيغة PDF
-          </button>
-        </div>
-
-        <footer className="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-[10px] text-slate-400 font-mono no-print">
+        <footer className="mt-8 pt-4 border-t border-slate-300 flex justify-between items-center text-[10px] text-slate-500 font-mono no-print text-center px-8 text-sans">
           <p>© 2026/2027 - بحث جامعي - كلية الخدمة الاجتماعية</p>
-          <p>STATUS: FINAL ACADEMIC RESEARCH / V2.0</p>
+          <p>STATUS: FINAL ACADEMIC RESEARCH / PDF SPEC READY</p>
         </footer>
 
       </main>
