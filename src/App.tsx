@@ -113,7 +113,10 @@ export default function App() {
 
             {/* Chapter 1: Introduction and Problem */}
             <section id="intro" className="page-break pt-12 print:pt-0">
-              <h2 className="text-3xl font-bold text-center mb-8">الفصل الأول<br/><span className="text-2xl font-semibold mt-2 block">المقدمة ومشكلة البحث</span></h2>
+              <div className="text-center mb-8 break-inside-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
+                <h2 className="text-3xl font-bold">الفصل الأول</h2>
+                <h3 className="text-2xl font-semibold mt-2">المقدمة ومشكلة البحث</h3>
+              </div>
               
               <div className="space-y-6 text-lg leading-loose text-justify">
                 <h3 className="text-2xl font-bold mt-8 mb-4">أولاً: مقدمة البحث</h3>
@@ -144,7 +147,10 @@ export default function App() {
 
             {/* Chapter 2: Importance and Objectives */}
             <section id="importance" className="page-break pt-12 print:pt-0">
-              <h2 className="text-3xl font-bold text-center mb-8">الفصل الثاني<br/><span className="text-2xl font-semibold mt-2 block">أهمية البحث وأهدافه</span></h2>
+              <div className="text-center mb-8 break-inside-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
+                <h2 className="text-3xl font-bold">الفصل الثاني</h2>
+                <h3 className="text-2xl font-semibold mt-2">أهمية البحث وأهدافه</h3>
+              </div>
 
               <div className="space-y-6 text-lg leading-loose text-justify">
                 <h3 className="text-2xl font-bold mt-8 mb-4">أولاً: أهمية البحث</h3>
@@ -174,7 +180,10 @@ export default function App() {
 
             {/* Chapter 3: Concepts and Theories */}
             <section id="concepts" className="page-break pt-12 print:pt-0">
-              <h2 className="text-3xl font-bold text-center mb-8">الفصل الثالث<br/><span className="text-2xl font-semibold mt-2 block">المفاهيم والنظريات الموجهة للبحث</span></h2>
+              <div className="text-center mb-8 break-inside-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
+                <h2 className="text-3xl font-bold">الفصل الثالث</h2>
+                <h3 className="text-2xl font-semibold mt-2">المفاهيم والنظريات الموجهة للبحث</h3>
+              </div>
 
               <div className="space-y-6 text-lg leading-loose text-justify">
                 <h3 className="text-2xl font-bold mt-8 mb-4">أولاً: تحديد المفاهيم الإجرائية</h3>
@@ -211,7 +220,10 @@ export default function App() {
 
             {/* Chapter 4: Impact */}
             <section id="impact" className="page-break pt-12 print:pt-0">
-              <h2 className="text-3xl font-bold text-center mb-8">الفصل الرابع<br/><span className="text-2xl font-semibold mt-2 block">تأثيرات المنصات الافتراضية على كيان الأسرة</span></h2>
+              <div className="text-center mb-8 break-inside-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
+                <h2 className="text-3xl font-bold">الفصل الرابع</h2>
+                <h3 className="text-2xl font-semibold mt-2">تأثيرات المنصات الافتراضية على كيان الأسرة</h3>
+              </div>
               <div className="space-y-6 text-lg leading-loose text-justify">
                 <p>
                   لا يمكن إنكار الدور المزدوج للتكنولوجيا الحديثة في شتى مجالات حياتنا؛ ورغم الفوائد العديدة التي جلبتها، إلا أن إساءة الاستخدام جلبت إشكاليات اجتماعية ونفسية معقدة بداخل الأسرة تستدعي التوقف. ونستعرض ذلك تفصيلياً في محورين رئيسيين:
@@ -237,7 +249,10 @@ export default function App() {
 
             {/* Chapter 5: Role of Social Worker */}
             <section id="social_worker" className="page-break pt-12 print:pt-0">
-              <h2 className="text-3xl font-bold text-center mb-8">الفصل الخامس<br/><span className="text-2xl font-semibold mt-2 block">التدخل المهني للأخصائي الاجتماعي لمواجهة المشكلة</span></h2>
+              <div className="text-center mb-8 break-inside-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
+                <h2 className="text-3xl font-bold">الفصل الخامس</h2>
+                <h3 className="text-2xl font-semibold mt-2">التدخل المهني للأخصائي الاجتماعي لمواجهة المشكلة</h3>
+              </div>
               <div className="space-y-6 text-lg leading-loose text-justify">
                 <p>
                   أمام هذا السيل الجارف من التحديات، لا يمكن للنسق المجتمعي الركون إلى الحلول التقليدية أو ترك الأسرة تواجه مصير الاغتراب الجبري منفردة. وهنا يظهر الدور الديناميكي الحاسم للخدمة الاجتماعية كمهنة متخصصة؛ حيث يعتمد الأخصائي الاجتماعي على ثلاثة مسارات استراتيجية للتدخل المهني تستهدف الفرد والأسرة.
